@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Style - Início</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="active">Início / Quem Somos</a>
+        <a href="agendamento.html">Agendar Horário</a>
+    </nav>
+
+    <header>
+        <h1>✂️ Barbearia SENAC</h1>
+        <p>Estilo, tradição e praticidade no coração do Distrito Criativo</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>💈 Quem Somos</h2>
+            <p>A <strong>Barbearia Style</strong> nasceu com a missão de unir a tradição do corte clássico às tendências modernas do estilo urbano e jovial. Aqui oferecemos um ambiente confortável, atendimento personalizado e profissionais capacitados para entregar o melhor visual para o seu dia a dia.</p>
+            <p style="margin-top: 10px;">Seja para um corte rápido, uma barba alinhada ou uma renovação completa, estamos prontos para te atender!</p>
+            <a href="agendamento.html" class="btn-agendar">🗓️ Marque seu Horário Agora</a>
+        </div>
+
+        <div class="card">
+            <h2>💰 Serviços e Preços</h2>
+            <ul id="lista-servicos">
+                <li>???????????????????</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>📍 Nossa Localização</h2>
+            <p><strong>Endereço:</strong> Av. Cristóvão Colombo, 545 - Floresta, Porto Alegre - RS (Shopping Total / Senac)</p>
+            <iframe class="map-frame" 
+                src="https://maps.google.com/maps?q=Senac%20Distrito%20Criativo%20Av.%20Crist%C3%B3v%C3%A3o%20Colombo%20545%20Porto%20Alegre&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                allowfullscreen loading="lazy">
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8080/api';
+
+        async function carregarServicos() {
+            try {
+                const res = await fetch(`${API_URL}/servicos`);
+                const servicos = await res.json();
+                
+                const listEl = document.getElementById('lista-servicos');
+                listEl.innerHTML = '';
+
+                servicos.forEach(s => {
+                    listEl.innerHTML += `
+                        <li>
+                            <span><strong>${s.nome}</strong> (${s.duracao_minutos} min)</span> 
+                            <span class="price-tag">R$ ${s.preco.toFixed(2)}</span>
+                        </li>`;
+                });
+            } catch (err) {
+                document.getElementById('lista-servicos').innerHTML = '<li>Erro ao carregar serviços. Verifique se o servidor backend está rodando.</li>';
+            }
+        }
+
+        carregarServicos();
+    </script>
+</body>
+</html>
