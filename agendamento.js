@@ -78,6 +78,54 @@ async function cancelarAgendamento(id) {
     }
 }
 
-// Inicializa as chamadas ao abrir a página
 carregarOpcoesServicos();
 carregarAgendamentos();
+
+let idAgendamentoEditando = null;
+
+
+function prepararEdicao(id, nome, servico, dataHora, telefone) {
+    idAgendamentoEditando = id; /
+
+    document.getElementById('nome').value = nome;
+    document.getElementById('servico').value = servico;
+    document.getElementById('data_hora').value = dataHora;
+    document.getElementById('telefone').value = telefone;
+
+
+    const btnSubmit = document.getElementById('btn-agendar'); 
+    if (btnSubmit) btnSubmit.innerText = 'Salvar Alterações';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('meu-formulario').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const dados = {
+        nome: document.getElementById('nome').value,
+        servico: document.getElementById('servico').value,
+        data_hora: document.getElementById('data_hora').value,
+        telefone: document.getElementById('telefone').value
+    };
+
+    if (idAgendamentoEditando) {
+        await fetch(`${API_URL}/agendamentos/${idAgendamentoEditando}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+        idAgendamentoEditando = null;
+        document.getElementById('btn-agendar').innerText = 'Agendar Horário 📅';
+    } else {
+        
+        await fetch(`${API_URL}/agendamentos`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+    }
+
+    this.reset();
+    carregarAgendamentos();
+});

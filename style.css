@@ -14,7 +14,7 @@ body {
 
 /* NAVEGAÇÃO */
 nav {
-    background-color: #2A2A2A; /* Cinza para dar contraste */
+    background-color: #2A2A2A; 
     padding: 15px;
     text-align: center;
     border-bottom: 1px solid #D4AF37; /* Detalhe em dourado */
@@ -38,7 +38,6 @@ nav a.active {
     padding-bottom: 3px;
 }
 
-/* CABEÇALHO */
 header {
     background-color: #0F0F0F;
     color: #FFFFFF;
@@ -50,10 +49,9 @@ header {
 header h1 {
     font-size: 2rem;
     margin-bottom: 5px;
-    color: #D4AF37; /* Título em dourado */
+    color: #D4AF37; 
 }
 
-/* LAYOUT E CARDS */
 .container {
     max-width: 900px;
     margin: 30px auto;
@@ -61,7 +59,7 @@ header h1 {
 }
 
 .card {
-    background: #2A2A2A; /* Cartões em cinza escuro */
+    background: #2A2A2A; 
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -71,12 +69,11 @@ header h1 {
 
 h2 {
     margin-bottom: 15px;
-    color: #D4AF37; /* Títulos dos cards em dourado */
+    color: #D4AF37; 
     border-bottom: 2px solid #D4AF37;
     padding-bottom: 8px;
 }
 
-/* FORMULÁRIOS E BOTÕES */
 label {
     display: block;
     margin-top: 15px;
@@ -105,8 +102,8 @@ input:focus, select:focus {
 }
 
 button {
-    background-color: #D4AF37; /* Botão principal em Dourado */
-    color: #0F0F0F; /* Texto do botão escuro para contraste */
+    background-color: #D4AF37; 
+    color: #0F0F0F;
     border: none;
     font-weight: bold;
     cursor: pointer;
@@ -150,7 +147,7 @@ button:hover {
     color: #FFFFFF;
 }
 
-/* LISTAS E COMPONENTES */
+
 ul {
     list-style: none;
 }
@@ -166,7 +163,7 @@ li {
 
 .price-tag {
     font-weight: bold;
-    color: #D4AF37; /* Preço destacado em Dourado */
+    color: #D4AF37; 
 }
 
 .map-frame {
@@ -181,9 +178,22 @@ input, select {
     background-color: #0F0F0F;
     color: #FFFFFF;
     border: 1px solid #D4AF37;
-    color-scheme: dark; /* 👈 Adicione isso! Torna o ícone do calendário branco/visível e clicável */
-}
+    color-scheme: dark; 
 
 input[type="datetime-local"] {
-    cursor: pointer; /* 👈 Adicione isso! Garante a interatividade do seletor */
+    cursor: pointer;
+}
+.btn-editar {
+    background-color: #e6b800; 
+    color: #121212;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.btn-editar:hover {
+    background-color: #ffcc00;
 }

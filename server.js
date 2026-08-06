@@ -86,3 +86,20 @@ const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+app.put('/api/agendamentos/:id', (req, res) => {
+    const { id } = req.params;
+    const { nome, servico, data_hora, telefone } = req.body;
+
+    const sql = `UPDATE agendamentos 
+                 SET nome = ?, servico = ?, data_hora = ?, telefone = ? 
+                 WHERE id = ?`;
+
+    db.query(sql, [nome, servico, data_hora, telefone, id], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Erro ao atualizar agendamento' });
+        }
+        res.json({ message: 'Agendamento atualizado com sucesso!' });
+    });
+});
